@@ -49,7 +49,7 @@ struct WeatherManager {
     }
     
     //    FUNCTION PARA USAR COMO FUNCAO DE CALL BACK DO RETORNO DA CONSULTA A API
-    //    NO EXEMPLO ACIMA USAMOS O CLOUSURE
+    //    NO EXEMPLO ACIMA USAMOS O CLOUSURE ENTAO ESSE METODO NAO ESTA SENDO USADO
     //    func handle(data: Data?, urlResponse: URLResponse?, error:Error?) {
     //        if error != nil {
     //            print(error!)
