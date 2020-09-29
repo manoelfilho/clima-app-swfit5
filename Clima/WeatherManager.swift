@@ -1,10 +1,19 @@
 import Foundation
+import CoreLocation
 
 struct WeatherManager {
     
     var delegate: WeatherManagerDelegate?
     
     let weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=metric&lang=pt&appid=0f45805061b5460b9ad33cc985a39ade"
+    
+    func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees){
+        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
+        
+        print(urlString)
+        
+        performRequest(urlString: urlString)
+    }
     
     func fetchWeather(cityName: String) {
         let urlString = "\(weatherURL)&q=\(self.stringTrimToURL(cityName))"
@@ -30,7 +39,7 @@ struct WeatherManager {
             let task = session.dataTask(with: url, completionHandler: {(data, urlResponse, error) in
                 
                 if error != nil {
-                    self.delegate?.didiFailWithError(error: error!)
+                    self.delegate?.didFailWithError(error: error!)
                 }
                 
                 if let safeData = data {
@@ -78,7 +87,7 @@ struct WeatherManager {
             //print(weather.temperatureStting)
             
         } catch {
-            self.delegate?.didiFailWithError(error: error)
+            self.delegate?.didFailWithError(error: error)
             return nil
         }
     }
